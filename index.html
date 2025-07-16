@@ -13,21 +13,19 @@
 
   <style>
     :root {
-      --bg-dark: #2C3531;
-      --bg-teal: #116466;
-      --accent-tan: #D9B08C;
-      --accent-peach: #FFCB9A;
-      --light-mint: #D1E8E2;
-      --text-color: #fff;
+      --bg-dark: #1e1e1e;
+      --bg-gold-deep: #5e4b2c;
+      --accent-gold: #d4af37;
+      --text-color: #f0e6d2;
+      --text-muted: #cfc8b6;
     }
 
     [data-theme="light"] {
-      --bg-dark: #D1E8E2;
-      --bg-teal: #FFCB9A;
-      --accent-tan: #116466;
-      --accent-peach: #2C3531;
-      --light-mint: #fff;
-      --text-color: #2C3531;
+      --bg-dark: #fffaf0;
+      --bg-gold-deep: #e9ddc7;
+      --accent-gold: #bfa850;
+      --text-color: #1e1e1e;
+      --text-muted: #444;
     }
 
     * {
@@ -41,6 +39,7 @@
       font-family: 'Open Sans', sans-serif;
       background: var(--bg-dark);
       color: var(--text-color);
+      line-height: 1.6;
     }
 
     header {
@@ -49,11 +48,12 @@
       top: 0;
       left: 0;
       padding: 1rem 2rem;
-      background: var(--bg-teal);
+      background: var(--bg-gold-deep);
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
     .logo-container {
@@ -62,67 +62,114 @@
     }
 
     .logo {
-      height: 360px;
+      height: 120px;
       width: auto;
-      margin-right: 60px;
+      margin-right: 30px;
     }
 
     header h1 {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.8rem;
-      color: var(--text-color);
+      font-size: 2rem;
+      color: var(--accent-gold);
     }
 
     nav a {
       color: var(--text-color);
-      margin-left: 1rem;
+      margin-left: 1.5rem;
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent-gold);
     }
 
     .hero {
       height: 100vh;
-      padding-top: 80px;
+      padding-top: 140px;
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      background: linear-gradient(to bottom, var(--bg-dark), #2e2e2e);
+    }
+
+    .hero h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--accent-gold);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
     }
 
     .btn {
-      padding: 0.75rem 1.5rem;
-      background: var(--accent-peach);
-      color: var(--bg-dark);
+      padding: 0.9rem 2rem;
+      background: var(--accent-gold);
+      color: #1e1e1e;
       text-decoration: none;
       font-weight: 600;
       border-radius: 8px;
-      margin-top: 1rem;
-      transition: transform 0.3s;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
     }
 
     .btn:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      background: #e6c85c;
     }
 
     section {
-      padding: 80px 2rem;
+      padding: 100px 2rem;
       text-align: center;
+    }
+
+    section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
     }
 
     .toggle-theme {
       cursor: pointer;
+      margin-left: 1.5rem;
+      font-size: 1.2rem;
     }
 
     footer {
       padding: 1rem;
-      background: var(--bg-teal);
+      background: var(--bg-gold-deep);
       text-align: center;
+      color: var(--text-muted);
+    }
+
+    form input,
+    form textarea {
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      width: 90%;
+      max-width: 500px;
+      border: none;
+      border-radius: 6px;
     }
 
     @media (max-width: 768px) {
       nav {
         display: none;
+      }
+
+      .logo {
+        height: 80px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -131,7 +178,7 @@
 
 <header>
   <div class="logo-container">
-    <img src="AE logo.png" alt="Alder's Edge Logo" class="logo">
+    <img src="assets/AE-logo.png" alt="Alder's Edge Logo" class="logo">
     <h1>Alder's Edge</h1>
   </div>
   <nav>
@@ -144,7 +191,7 @@
 </header>
 
 <section class="hero">
-  <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem;">Premium 3D Printing & Custom Designs</h2>
+  <h2>Premium 3D Printing & Custom Designs</h2>
   <p>Bring your ideas to life with precision and creativity.</p>
   <a href="mailto:youremail@example.com" class="btn">Request Custom Order</a>
 </section>
