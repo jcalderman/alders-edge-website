@@ -56,6 +56,23 @@
       z-index: 100;
     }
 
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 60px;
+      width: auto;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      color: var(--text-color);
+    }
+
     nav a {
       color: var(--text-color);
       margin-left: 1rem;
@@ -113,7 +130,10 @@
 <body data-theme="dark">
 
 <header>
-  <h1 style="font-family: 'Poppins', sans-serif;">Alder's Edge</h1>
+  <div class="logo-container">
+    <img src="assets/AE logo.png" alt="Alder's Edge Logo" class="logo">
+    <h1>Alder's Edge</h1>
+  </div>
   <nav>
     <a href="#commissions">Custom Commissions</a>
     <a href="#pricing">Pricing</a>
