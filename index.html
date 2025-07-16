@@ -42,7 +42,6 @@
       line-height: 1.6;
     }
 
-    /* Floating logo independent of header */
     .floating-logo {
       position: absolute;
       top: 10px;
@@ -70,6 +69,11 @@
       align-items: center;
       z-index: 100;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    header.hide {
+      transform: translateY(-100%);
     }
 
     header h1 {
@@ -187,11 +191,6 @@
         font-size: 1.5rem;
       }
     }
-    header.hide {
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
-}
-
   </style>
 </head>
 <body data-theme="dark">
@@ -200,7 +199,7 @@
 <img src="AE logo.png" alt="Alder's Edge Logo" class="floating-logo" />
 
 <header>
-  <h1></h1>
+  <h1>Alder's Edge</h1>
   <nav>
     <a href="#commissions">Custom Commissions</a>
     <a href="#pricing">Pricing</a>
@@ -251,28 +250,24 @@
     const theme = document.body.getAttribute('data-theme');
     document.body.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
   });
-<script>
+
+  // Header hide on scroll down
   let lastScrollTop = 0;
   const header = document.querySelector("header");
 
   window.addEventListener("scroll", () => {
     const st = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Collapse before reaching hero content
-    if (st > 60) {
-      if (st > lastScrollTop) {
-        // Scrolling down
-        header.classList.add("hide");
-      } else {
-        // Scrolling up
-        header.classList.remove("hide");
-      }
+    if (st > lastScrollTop && st > 100) {
+      // Scrolling down
+      header.classList.add("hide");
     } else {
-      header.classList.remove("hide"); // Always show at top
+      // Scrolling up or near top
+      header.classList.remove("hide");
     }
 
     lastScrollTop = st <= 0 ? 0 : st;
-  }, false);
+  });
 </script>
 
 </body>
