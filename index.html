@@ -187,6 +187,11 @@
         font-size: 1.5rem;
       }
     }
+    header.hide {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
   </style>
 </head>
 <body data-theme="dark">
@@ -246,6 +251,28 @@
     const theme = document.body.getAttribute('data-theme');
     document.body.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
   });
+<script>
+  let lastScrollTop = 0;
+  const header = document.querySelector("header");
+
+  window.addEventListener("scroll", () => {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Collapse before reaching hero content
+    if (st > 60) {
+      if (st > lastScrollTop) {
+        // Scrolling down
+        header.classList.add("hide");
+      } else {
+        // Scrolling up
+        header.classList.remove("hide");
+      }
+    } else {
+      header.classList.remove("hide"); // Always show at top
+    }
+
+    lastScrollTop = st <= 0 ? 0 : st;
+  }, false);
 </script>
 
 </body>
