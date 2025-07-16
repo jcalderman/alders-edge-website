@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alder's Edge | Premium 3D Printing</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #2C3531;
+      --bg-teal: #116466;
+      --accent-tan: #D9B08C;
+      --accent-peach: #FFCB9A;
+      --light-mint: #D1E8E2;
+      --text-color: #fff;
+    }
+
+    [data-theme="light"] {
+      --bg-dark: #D1E8E2;
+      --bg-teal: #FFCB9A;
+      --accent-tan: #116466;
+      --accent-peach: #2C3531;
+      --light-mint: #fff;
+      --text-color: #2C3531;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-color);
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      padding: 1rem 2rem;
+      background: var(--bg-teal);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    nav a {
+      color: var(--text-color);
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero {
+      height: 100vh;
+      padding-top: 80px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--accent-peach);
+      color: var(--bg-dark);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      margin-top: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    section {
+      padding: 80px 2rem;
+      text-align: center;
+    }
+
+    .toggle-theme {
+      cursor: pointer;
+    }
+
+    footer {
+      padding: 1rem;
+      background: var(--bg-teal);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+<header>
+  <h1 style="font-family: 'Poppins', sans-serif;">Alder's Edge</h1>
+  <nav>
+    <a href="#commissions">Custom Commissions</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+    <span class="toggle-theme"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem;">Premium 3D Printing & Custom Designs</h2>
+  <p>Bring your ideas to life with precision and creativity.</p>
+  <a href="mailto:youremail@example.com" class="btn">Request Custom Order</a>
+</section>
+
+<section id="commissions">
+  <h2>Custom Commissions</h2>
+  <p>[Icons and details go here]</p>
+</section>
+
+<section id="pricing">
+  <h2>Pricing</h2>
+  <p>[Pricing cards with hover effects go here]</p>
+</section>
+
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <p>[Customer testimonials here]</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <form>
+    <input type="text" placeholder="Name" required><br>
+    <input type="email" placeholder="Email" required><br>
+    <textarea placeholder="Your message" required></textarea><br>
+    <button class="btn">Submit</button>
+  </form>
+</section>
+
+<footer>
+  Alder's Edge &copy; 2025
+</footer>
+
+<script>
+  const toggle = document.querySelector('.toggle-theme');
+  toggle.addEventListener('click', () => {
+    const theme = document.body.getAttribute('data-theme');
+    document.body.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
+  });
+</script>
+
+</body>
+</html>
