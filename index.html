@@ -4,52 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Alder's Edge | Premium 3D Printing</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
-
-  <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #1e1e1e;
-      --bg-gold-deep: #5e4b2c;
+      --bg-dark: #1a1a1a;
       --accent-gold: #d4af37;
-      --text-color: #f0e6d2;
       --text-muted: #cfc8b6;
-    }
-
-    [data-theme="light"] {
-      --bg-dark: #fffaf0;
-      --bg-gold-deep: #e9ddc7;
-      --accent-gold: #bfa850;
-      --text-color: #1e1e1e;
-      --text-muted: #444;
+      --bg-light-gold: #292211;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      scroll-behavior: smooth;
+      box-sizing: border-box;
     }
 
     body {
       font-family: 'Open Sans', sans-serif;
       background: var(--bg-dark);
-      color: var(--text-color);
-      line-height: 1.6;
-    }
-
-    .floating-logo {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      height: 180px;
-      width: auto;
-      z-index: 101;
-      pointer-events: none;
+      color: white;
     }
 
     header {
@@ -57,217 +31,250 @@
       width: 100%;
       top: 0;
       left: 0;
-      padding: 1rem 2rem 1rem 220px;
-      background: linear-gradient(
-        180deg,
-        rgba(94, 75, 44, 0.9) 0%,
-        rgba(212, 175, 55, 0.7) 40%,
-        transparent 100%
-      );
+      background: rgba(26, 26, 26, 0.85);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 100;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid var(--accent-gold);
+      backdrop-filter: blur(10px);
+      transition: opacity 0.5s ease;
+      z-index: 1000;
     }
 
-    header.hide {
-      transform: translateY(-100%);
+    .logo-container {
+      display: flex;
+      align-items: center;
     }
 
-    header h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2rem;
+    .logo-container img {
+      height: 80px;
+      margin-right: 20px;
+    }
+
+    .logo-container span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
       color: var(--accent-gold);
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
     }
 
     nav a {
-      color: var(--text-color);
-      margin-left: 1.5rem;
+      color: var(--accent-gold);
       text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
+      font-weight: 500;
+      font-size: 1rem;
     }
 
-    nav a:hover {
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
       color: var(--accent-gold);
+      cursor: pointer;
     }
 
     .hero {
       height: 100vh;
-      padding-top: 160px;
-      text-align: center;
+      background: url('helmet-background.jpg') no-repeat center center/cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        #2e2e2e 80%
-      );
+      text-align: center;
+      padding: 0 2rem;
     }
 
-    .hero h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
       color: var(--accent-gold);
+      margin-bottom: 1rem;
     }
 
     .hero p {
       font-size: 1.2rem;
       color: var(--text-muted);
+      margin-bottom: 2rem;
     }
 
     .btn {
-      padding: 0.9rem 2rem;
-      background: var(--accent-gold);
-      color: #1e1e1e;
-      text-decoration: none;
+      background: transparent;
+      border: 2px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 0.8rem 2rem;
       font-weight: 600;
-      border-radius: 8px;
-      margin-top: 2rem;
-      transition: all 0.3s ease;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     .btn:hover {
-      transform: translateY(-4px);
-      background: #e6c85c;
+      background: var(--accent-gold);
+      color: #1a1a1a;
     }
 
     section {
-      padding: 100px 2rem;
+      padding: 5rem 2rem;
       text-align: center;
     }
 
     section h2 {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature-box {
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 250px;
+      border: 1px solid #333;
+    }
+
+    .feature-box i {
       font-size: 2rem;
       color: var(--accent-gold);
       margin-bottom: 1rem;
     }
 
-    .toggle-theme {
-      cursor: pointer;
-      margin-left: 1.5rem;
+    .feature-box h3 {
       font-size: 1.2rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
     }
 
     footer {
-      padding: 1rem;
-      background: var(--bg-gold-deep);
-      text-align: center;
+      background: var(--bg-light-gold);
       color: var(--text-muted);
-    }
-
-    form input,
-    form textarea {
-      padding: 0.75rem;
-      margin: 0.5rem 0;
-      width: 90%;
-      max-width: 500px;
-      border: none;
-      border-radius: 6px;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
     }
 
     @media (max-width: 768px) {
-      .floating-logo {
-        height: 100px;
-        top: 5px;
-        left: 5px;
-      }
-
-      header {
-        padding-left: 120px;
-      }
-
       nav {
         display: none;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        padding: 1rem;
       }
 
-      header h1 {
-        font-size: 1.5rem;
+      nav.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
       }
     }
   </style>
 </head>
-<body data-theme="dark">
+<body>
 
-<!-- Floating logo -->
-<img src="AE logo.png" alt="Alder's Edge Logo" class="floating-logo" />
-
-<header>
-  <h1>Alder's Edge</h1>
-  <nav>
+<header id="main-header">
+  <div class="logo-container">
+    <img src="AE logo.png" alt="Alder's Edge Logo">
+    <span>Alder's Edge</span>
+  </div>
+  <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
+  <nav id="nav-links">
     <a href="#commissions">Custom Commissions</a>
     <a href="#pricing">Pricing</a>
-    <a href="#testimonials">Testimonials</a>
     <a href="#contact">Contact</a>
-    <span class="toggle-theme"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </nav>
 </header>
 
 <section class="hero">
-  <h2>Premium 3D Printing & Custom Designs</h2>
-  <p>Bring your ideas to life with precision and creativity.</p>
-  <a href="mailto:youremail@example.com" class="btn">Request Custom Order</a>
+  <h1>Premium 3D Printing & Custom Designs</h1>
+  <p>High-quality 3D prints tailored to your needs.</p>
+  <button class="btn" onclick="location.href='mailto:you@example.com'">Request a Custom Order</button>
 </section>
 
 <section id="commissions">
   <h2>Custom Commissions</h2>
-  <p>[Icons and details go here]</p>
+  <div class="features">
+    <div class="feature-box">
+      <i class="fas fa-pencil-ruler"></i>
+      <h3>Custom Designs</h3>
+      <p>We bring your ideas to life with bespoke 3D models.</p>
+    </div>
+    <div class="feature-box">
+      <i class="fas fa-tools"></i>
+      <h3>Expert Craftsmanship</h3>
+      <p>Each piece is meticulously printed with attention to detail.</p>
+    </div>
+    <div class="feature-box">
+      <i class="fas fa-handshake"></i>
+      <h3>Collaborative Process</h3>
+      <p>We work closely with clients to ensure satisfaction.</p>
+    </div>
+  </div>
 </section>
 
 <section id="pricing">
   <h2>Pricing</h2>
-  <p>[Pricing cards with hover effects go here]</p>
-</section>
-
-<section id="testimonials">
-  <h2>Testimonials</h2>
-  <p>[Customer testimonials here]</p>
+  <div class="features">
+    <div class="feature-box">
+      <i class="fas fa-file-invoice-dollar"></i>
+      <h3>Custom Commissions</h3>
+      <p>Pricing based on complexity and project scope.</p>
+    </div>
+    <div class="feature-box">
+      <i class="fas fa-cube"></i>
+      <h3>Pre-purchased STL Files</h3>
+      <p>Discounted rates for printing existing models.</p>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
   <h2>Contact</h2>
-  <form>
-    <input type="text" placeholder="Name" required><br />
-    <input type="email" placeholder="Email" required><br />
-    <textarea placeholder="Your message" required></textarea><br />
-    <button class="btn">Submit</button>
-  </form>
+  <p>Email us at <a href="mailto:you@example.com" style="color: var(--accent-gold)">you@example.com</a></p>
 </section>
 
 <footer>
-  Alder's Edge &copy; 2025
+  &copy; 2025 Alder's Edge — All rights reserved.
 </footer>
 
 <script>
-  const toggle = document.querySelector('.toggle-theme');
-  toggle.addEventListener('click', () => {
-    const theme = document.body.getAttribute('data-theme');
-    document.body.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
-  });
-
-  // Header hide on scroll down
   let lastScrollTop = 0;
-  const header = document.querySelector("header");
+  const header = document.getElementById('main-header');
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener("scroll", function() {
     const st = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (st > lastScrollTop && st > 100) {
-      // Scrolling down
-      header.classList.add("hide");
+    if (st > lastScrollTop) {
+      header.style.opacity = '0';
     } else {
-      // Scrolling up or near top
-      header.classList.remove("hide");
+      header.style.opacity = '1';
     }
-
     lastScrollTop = st <= 0 ? 0 : st;
-  });
+  }, false);
+
+  function toggleMenu() {
+    const nav = document.getElementById("nav-links");
+    nav.classList.toggle("active");
+  }
 </script>
 
 </body>
