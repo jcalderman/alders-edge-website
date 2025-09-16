@@ -206,6 +206,7 @@
   <img src="AE logo.png" alt="Alder's Edge Logo" class="logo-centered">
   <div class="glow-border"></div>
   <nav id="nav-links">
+    <a href="#featured">Featured Designs</a>
     <a href="#commissions">Custom Commissions</a>
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact</a>
@@ -221,6 +222,114 @@
 </button>
 </section>
   
+/* ── Featured Designs ───────────────────────────── */
+.featured {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+.featured .intro {
+  color: var(--text-muted);
+  max-width: 800px;
+  margin: 0.5rem auto 2rem;
+}
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.video-card {
+  grid-column: span 6;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 12px;
+  overflow: clip;
+  box-shadow: 0 0 12px rgba(212,175,55,0.15);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.video-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 18px rgba(212,175,55,0.25);
+  border-color: var(--accent-gold);
+}
+.video-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;    /* keeps layout stable as video loads */
+  background: #000;
+}
+.video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.video-meta {
+  padding: 0.85rem 1rem 1.1rem;
+  text-align: left;
+}
+.video-meta h3 {
+  margin: 0 0 .35rem;
+  font-size: 1.05rem;
+  color: var(--accent-gold);
+}
+.video-meta p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: .95rem;
+}
+
+/* Mobile: stack */
+@media (max-width: 900px) {
+  .video-card { grid-column: span 12; }
+}
+
+ <!-- Featured Section -->
+<section id="featured" class="featured">
+  <h2>Featured Designs</h2>
+  <p class="intro">Short loops of recent prints, props, and product shots from Alder’s Edge.</p>
+
+  <div class="featured-grid">
+    <!-- Video 1 -->
+    <article class="video-card">
+      <div class="video-wrap">
+        <video
+          src="assets/Gedo_mask.mp4"
+          playsinline
+          muted
+          loop
+          preload="metadata"
+          poster="featured-1-poster.jpg"
+          aria-label="Archon Blade—silk PLA time-lapse">
+        </video>
+      </div>
+      <div class="video-meta">
+        <h3>Archon Blade – Time-Lapse</h3>
+        <p>Silk PLA, 0.2 mm layer height, polished finish.</p>
+      </div>
+    </article>
+
+    <!-- Video 2 -->
+    <article class="video-card">
+      <div class="video-wrap">
+        <video
+          src="featured-2.mp4"
+          playsinline
+          muted
+          loop
+          preload="metadata"
+          poster="featured-2-poster.jpg"
+          aria-label="Runic Coin—dual color showcase">
+        </video>
+      </div>
+      <div class="video-meta">
+        <h3>Runic Coin – Dual-Color</h3>
+        <p>Gold + Onyx blend, embossed lettering, satin clear coat.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- Custom Commissions Section -->
 <section id="commissions">
   <h2>Custom Commissions</h2>
@@ -294,6 +403,34 @@
     const nav = document.getElementById("nav-links");
     nav.classList.toggle("active");
   }
+</script>
+
+<script>
+  (function() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const vids = Array.from(document.querySelectorAll('#featured video'));
+
+    if (!prefersReduced && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(({isIntersecting, target}) => {
+          if (isIntersecting) { target.play().catch(()=>{}); }
+          else { target.pause(); }
+        });
+      }, { threshold: 0.4 });
+      vids.forEach(v => io.observe(v));
+    } else {
+      // Fallback: start muted autoplay on load
+      vids.forEach(v => v.play().catch(()=>{}));
+    }
+
+    // Click to toggle sound (optional nicety)
+    vids.forEach(v => {
+      v.addEventListener('click', () => {
+        v.muted = !v.muted;
+        if (!v.paused) v.play().catch(()=>{});
+      });
+    });
+  })();
 </script>
 
 </body>
