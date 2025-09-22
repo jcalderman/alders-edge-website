@@ -41,6 +41,13 @@
       box-shadow: 0 0 15px var(--accent-gold);
       z-index: 1000;
       transition: opacity 0.5s ease;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+    header.hide 
+    {
+      transform: translateY(-110%);
+      opacity: 0;
     }
 
     .glow-border {
@@ -199,7 +206,7 @@
       }
     }
 
-<!--Featured CSS-->
+/* Featured CSS */
 .featured {
   padding: 5rem 2rem;
   text-align: center;
@@ -422,24 +429,44 @@
 </footer>
 
 <script>
-  let lastScrollTop = 0;
-  const header = document.getElementById('main-header');
+  (function () {
+    const header = document.getElementById('main-header');
 
-  window.addEventListener("scroll", function() {
-    const st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop) {
-      header.style.opacity = '0';
-    } else {
-      header.style.opacity = '1';
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+
+    // Tune these:
+    const hideAfter = 60;   // start hiding once you've scrolled this far
+    const showTop = 12;     // always show near the very top
+    const upReveal = 24;    // how much upward scroll before re-showing
+
+    function onScroll() {
+      const y = window.scrollY || 0;
+      const dy = y - lastY;
+
+      // Hide when scrolling down past the threshold
+      if (y > hideAfter && dy > 0) {
+        header.classList.add('hide');
+      }
+
+      // Show when near top, or when scrolling up enough
+      if (y <= showTop || dy < -upReveal) {
+        header.classList.remove('hide');
+      }
+
+      lastY = y <= 0 ? 0 : y;
+      ticking = false;
     }
-    lastScrollTop = st <= 0 ? 0 : st;
-  }, false);
 
-  function toggleMenu() {
-    const nav = document.getElementById("nav-links");
-    nav.classList.toggle("active");
-  }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
 </script>
+
 
 <script>
   (function() {
