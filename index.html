@@ -241,6 +241,26 @@
   object-fit: cover;
   display: block;
 }
+    
+/* Ensure images fill the same 16:9 box exactly like videos */
+.video-wrap img,
+.video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* If any sizing weirdness persists across browsers, pin media absolutely */
+.video-wrap {
+  position: relative;
+}
+.video-wrap > img,
+.video-wrap > video {
+  position: absolute;
+  inset: 0;
+}
+
 .video-meta {
   padding: 0.85rem 1rem 1.1rem;
   text-align: left;
